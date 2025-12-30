@@ -18,12 +18,375 @@
         flex-direction: column;
         align-items: center;
         transition: background-color 0.5s ease;
+        position: relative;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      /* 背景アニメーション用のコンテナ */
+      .background-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      /* 1月：お正月（雪、初日の出） */
+      .january .background-animation {
+        background: linear-gradient(to bottom, #ff6b6b 0%, #ffd93d 50%, #87ceeb 100%);
+      }
+      .january .snowflake {
+        position: absolute;
+        color: white;
+        font-size: 1em;
+        animation: fall linear infinite;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+
+      /* 2月：バレンタイン（ハート、ピンク） */
+      .february .background-animation {
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+      }
+      .february .heart {
+        position: absolute;
+        color: #ff1744;
+        font-size: 1.5em;
+        animation: float 3s ease-in-out infinite;
+        opacity: 0.7;
+      }
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(10deg);
+        }
+      }
+
+      /* 3月：春（桜の花びら） */
+      .march .background-animation {
+        background: linear-gradient(to bottom, #e8f5e9 0%, #fff9c4 100%);
+      }
+      .march .cherry-blossom {
+        position: absolute;
+        color: #ffb3d9;
+        font-size: 1.2em;
+        animation: petal-fall 4s linear infinite;
+      }
+      @keyframes petal-fall {
+        to {
+          transform: translateY(100vh) rotate(720deg);
+        }
+      }
+
+      /* 4月：春（桜、新緑） */
+      .april .background-animation {
+        background: linear-gradient(to bottom, #e8f5e9 0%, #c8e6c9 100%);
+      }
+      .april .cherry-blossom {
+        position: absolute;
+        color: #ffb3d9;
+        font-size: 1.2em;
+        animation: petal-fall 4s linear infinite;
+      }
+
+      /* 5月：新緑（葉っぱ） */
+      .may .background-animation {
+        background: linear-gradient(to bottom, #a5d6a7 0%, #c8e6c9 100%);
+      }
+      .may .leaf {
+        position: absolute;
+        color: #4caf50;
+        font-size: 1.3em;
+        animation: leaf-fall 5s linear infinite;
+      }
+      @keyframes leaf-fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+
+      /* 6月：梅雨（雨、紫陽花） */
+      .june .background-animation {
+        background: linear-gradient(to bottom, #b39ddb 0%, #90caf9 100%);
+      }
+      .june .raindrop {
+        position: absolute;
+        width: 2px;
+        height: 30px;
+        background: linear-gradient(to bottom, rgba(100, 181, 246, 0.3), #64b5f6);
+        border-radius: 1px;
+        animation: rain-fall linear infinite;
+        opacity: 0.8;
+      }
+      @keyframes rain-fall {
+        0% {
+          transform: translateY(-30px);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(calc(100vh + 30px));
+          opacity: 0;
+        }
+      }
+      .june .hydrangea {
+        position: absolute;
+        color: #ba68c8;
+        font-size: 1.5em;
+        animation: float 4s ease-in-out infinite;
+        opacity: 0.7;
+      }
+
+      /* 7月：夏（花火、星） */
+      .july .background-animation {
+        background: linear-gradient(to bottom, #1a237e 0%, #283593 50%, #3949ab 100%);
+      }
+      .july .star {
+        position: absolute;
+        color: #ffd700;
+        font-size: 1em;
+        animation: twinkle 2s ease-in-out infinite;
+      }
+      @keyframes twinkle {
+        0%, 100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+
+      /* 8月：夏（海、波） */
+      .august .background-animation {
+        background: linear-gradient(to bottom, #4fc3f7 0%, #29b6f6 30%, #0288d1 70%, #0277bd 100%);
+      }
+      .august .cloud {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 2em;
+        animation: cloud-drift 20s linear infinite;
+      }
+      @keyframes cloud-drift {
+        0% {
+          transform: translateX(-100px);
+        }
+        100% {
+          transform: translateX(calc(100vw + 100px));
+        }
+      }
+      .august .wave {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1.5em;
+        animation: wave-float 4s ease-in-out infinite;
+      }
+      @keyframes wave-float {
+        0%, 100% {
+          transform: translateY(0) translateX(0);
+        }
+        50% {
+          transform: translateY(-10px) translateX(10px);
+        }
+      }
+      .august .float-item {
+        position: absolute;
+        font-size: 1.8em;
+        animation: float-on-water 6s ease-in-out infinite;
+        opacity: 0.8;
+      }
+      @keyframes float-on-water {
+        0%, 100% {
+          transform: translateY(0) translateX(0) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-15px) translateX(10px) rotate(5deg);
+        }
+        50% {
+          transform: translateY(-10px) translateX(-5px) rotate(-5deg);
+        }
+        75% {
+          transform: translateY(-20px) translateX(5px) rotate(3deg);
+        }
+      }
+      .august .beach-item {
+        position: absolute;
+        font-size: 1.5em;
+        animation: beach-float 5s ease-in-out infinite;
+        opacity: 0.7;
+      }
+      @keyframes beach-float {
+        0%, 100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-8px) scale(1.1);
+        }
+      }
+
+      /* 9月：秋（紅葉、月） */
+      .september .background-animation {
+        background: linear-gradient(to bottom, #fff3e0 0%, #ffe0b2 100%);
+      }
+      .september .maple-leaf {
+        position: absolute;
+        color: #ff6f00;
+        font-size: 1.5em;
+        animation: maple-fall 6s linear infinite;
+      }
+      @keyframes maple-fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+
+      /* 10月：ハロウィン */
+      .october .background-animation {
+        background: linear-gradient(to bottom, #6a1b9a 0%, #ab47bc 50%, #ce93d8 100%);
+      }
+      .october .pumpkin {
+        position: absolute;
+        color: #ff6f00;
+        font-size: 1.5em;
+        animation: float 3s ease-in-out infinite;
+      }
+      .october .ghost {
+        position: absolute;
+        color: white;
+        font-size: 1.3em;
+        animation: float 4s ease-in-out infinite;
+        opacity: 0.8;
+      }
+
+      /* 11月：秋（紅葉、落ち葉） */
+      .november .background-animation {
+        background: linear-gradient(to bottom, #efebe9 0%, #d7ccc8 100%);
+      }
+      .november .maple-leaf {
+        position: absolute;
+        color: #d84315;
+        font-size: 1.5em;
+        animation: maple-fall 6s linear infinite;
+      }
+
+      /* 12月：クリスマス（雪、星、装飾） */
+      .december .background-animation {
+        background: linear-gradient(to bottom, #1a237e 0%, #283593 50%, #3949ab 100%);
+      }
+      .december .snowflake {
+        position: absolute;
+        color: white;
+        font-size: 1.2em;
+        animation: fall 3s linear infinite;
+      }
+      .december .star {
+        position: absolute;
+        color: #ffd700;
+        font-size: 1.5em;
+        animation: twinkle 1.5s ease-in-out infinite;
+      }
+      .december .ornament {
+        position: absolute;
+        font-size: 1em;
+        animation: swing 3s ease-in-out infinite;
+      }
+      @keyframes swing {
+        0%, 100% {
+          transform: rotate(-5deg);
+        }
+        50% {
+          transform: rotate(5deg);
+        }
       }
 
       h1 {
         font-size: 1.8em;
         margin-bottom: 0.5em;
-        color: #363427; /* テキストカラー */
+        color: #363427; /* デフォルトのテキストカラー */
+        transition: color 0.5s ease;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 月ごとのh1の色設定 */
+      /* 1月：お正月（明るい背景） */
+      .january h1 {
+        color: #1a1a1a;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 2月：バレンタイン（明るいピンク背景） */
+      .february h1 {
+        color: #8b0000;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+      }
+
+      /* 3月：春（明るい背景） */
+      .march h1 {
+        color: #2e7d32;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 4月：春（明るい背景） */
+      .april h1 {
+        color: #1b5e20;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 5月：新緑（明るい背景） */
+      .may h1 {
+        color: #1b5e20;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 6月：梅雨（明るい紫・青背景） */
+      .june h1 {
+        color: #1a237e;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 7月：夏（暗い背景） */
+      .july h1 {
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 215, 0, 0.3);
+      }
+
+      /* 8月：夏（海の背景） */
+      .august h1 {
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 9月：秋（明るい背景） */
+      .september h1 {
+        color: #bf360c;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 10月：ハロウィン（暗い紫背景） */
+      .october h1 {
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 111, 0, 0.5);
+      }
+
+      /* 11月：秋（明るい背景） */
+      .november h1 {
+        color: #bf360c;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 12月：クリスマス（暗い背景） */
+      .december h1 {
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 215, 0, 0.4);
       }
 
       button {
@@ -73,12 +436,189 @@
     </style>
   </head>
   <body>
+    <div class="background-animation" id="backgroundAnimation"></div>
     <h1>🎲 アイスブレイク：お題 & 順番</h1>
     <button onclick="run()">スタート！</button>
     <p id="topic">お題がここに表示されます</p>
     <ul id="order"></ul>
 
     <script>
+      // 月ごとの背景アニメーションを初期化
+      function initBackgroundAnimation() {
+        const month = new Date().getMonth() + 1; // 1-12
+        const body = document.body;
+        const animationContainer = document.getElementById('backgroundAnimation');
+        
+        // 月ごとのクラスを追加
+        const monthClasses = {
+          1: 'january',
+          2: 'february',
+          3: 'march',
+          4: 'april',
+          5: 'may',
+          6: 'june',
+          7: 'july',
+          8: 'august',
+          9: 'september',
+          10: 'october',
+          11: 'november',
+          12: 'december'
+        };
+        
+        body.classList.add(monthClasses[month]);
+        
+        // 月ごとのアニメーション要素を生成
+        function createElement(className, emoji, count, delay = 0) {
+          for (let i = 0; i < count; i++) {
+            setTimeout(() => {
+              const element = document.createElement('div');
+              element.className = className;
+              element.textContent = emoji;
+              element.style.left = Math.random() * 100 + '%';
+              element.style.top = Math.random() * 20 + '%';
+              element.style.animationDelay = Math.random() * 2 + 's';
+              element.style.animationDuration = (Math.random() * 3 + 2) + 's';
+              animationContainer.appendChild(element);
+            }, delay + i * 200);
+          }
+        }
+        
+        switch(month) {
+          case 1: // 1月：お正月
+            createElement('snowflake', '❄️', 20);
+            createElement('snowflake', '🌅', 3);
+            break;
+          case 2: // 2月：バレンタイン
+            createElement('heart', '❤️', 15);
+            createElement('heart', '💕', 10);
+            break;
+          case 3: // 3月：春（桜）
+            createElement('cherry-blossom', '🌸', 25);
+            break;
+          case 4: // 4月：春（桜）
+            createElement('cherry-blossom', '🌸', 25);
+            createElement('cherry-blossom', '🌿', 10);
+            break;
+          case 5: // 5月：新緑
+            createElement('leaf', '🍃', 20);
+            createElement('leaf', '🌿', 15);
+            break;
+          case 6: // 6月：梅雨
+            // 雨粒を連続的に生成
+            function createRain() {
+              for (let i = 0; i < 80; i++) {
+                setTimeout(() => {
+                  const drop = document.createElement('div');
+                  drop.className = 'raindrop';
+                  drop.style.left = Math.random() * 100 + '%';
+                  drop.style.top = '-30px';
+                  drop.style.animationDelay = Math.random() * 1 + 's';
+                  drop.style.animationDuration = (Math.random() * 0.8 + 0.4) + 's';
+                  animationContainer.appendChild(drop);
+                  
+                  // アニメーション終了後に要素を削除
+                  setTimeout(() => {
+                    if (drop.parentNode) {
+                      drop.parentNode.removeChild(drop);
+                    }
+                  }, (parseFloat(drop.style.animationDuration) * 1000) + 100);
+                }, i * 30);
+              }
+            }
+            createRain();
+            // 定期的に雨を再生成
+            setInterval(createRain, 2000);
+            createElement('hydrangea', '🌺', 8);
+            break;
+          case 7: // 7月：夏（花火、星）
+            createElement('star', '⭐', 30);
+            createElement('star', '✨', 20);
+            break;
+          case 8: // 8月：夏（海、雲、波）
+            // 雲を追加
+            for (let i = 0; i < 5; i++) {
+              setTimeout(() => {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.textContent = '☁️';
+                cloud.style.top = (Math.random() * 30 + 5) + '%';
+                cloud.style.left = '-100px';
+                cloud.style.animationDelay = Math.random() * 5 + 's';
+                cloud.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                animationContainer.appendChild(cloud);
+              }, i * 500);
+            }
+            
+            // 波を追加
+            for (let i = 0; i < 8; i++) {
+              setTimeout(() => {
+                const wave = document.createElement('div');
+                wave.className = 'wave';
+                wave.textContent = '🌊';
+                wave.style.bottom = (Math.random() * 20 + 5) + '%';
+                wave.style.left = Math.random() * 100 + '%';
+                wave.style.animationDelay = Math.random() * 2 + 's';
+                wave.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                animationContainer.appendChild(wave);
+              }, i * 200);
+            }
+            
+            // 浮き輪や夏の絵文字を追加（水に浮いている感じ）
+            const summerEmojis = ['🛟', '🏖️', '🌴', '⛱️', '🐚', '🦀', '🏝️'];
+            for (let i = 0; i < 12; i++) {
+              setTimeout(() => {
+                const floatItem = document.createElement('div');
+                floatItem.className = 'float-item';
+                floatItem.textContent = summerEmojis[Math.floor(Math.random() * summerEmojis.length)];
+                floatItem.style.bottom = (Math.random() * 40 + 10) + '%';
+                floatItem.style.left = Math.random() * 100 + '%';
+                floatItem.style.animationDelay = Math.random() * 3 + 's';
+                floatItem.style.animationDuration = (Math.random() * 2 + 4) + 's';
+                animationContainer.appendChild(floatItem);
+              }, i * 300);
+            }
+            
+            // ビーチのアイテムを追加（上部に配置）
+            const beachEmojis = ['🌴', '🏖️', '⛱️', '🏝️'];
+            for (let i = 0; i < 6; i++) {
+              setTimeout(() => {
+                const beachItem = document.createElement('div');
+                beachItem.className = 'beach-item';
+                beachItem.textContent = beachEmojis[Math.floor(Math.random() * beachEmojis.length)];
+                beachItem.style.top = (Math.random() * 15 + 2) + '%';
+                beachItem.style.left = Math.random() * 100 + '%';
+                beachItem.style.animationDelay = Math.random() * 2 + 's';
+                beachItem.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                animationContainer.appendChild(beachItem);
+              }, i * 400);
+            }
+            break;
+          case 9: // 9月：秋（紅葉）
+            createElement('maple-leaf', '🍁', 20);
+            createElement('maple-leaf', '🌙', 3);
+            break;
+          case 10: // 10月：ハロウィン
+            createElement('pumpkin', '🎃', 10);
+            createElement('ghost', '👻', 8);
+            createElement('star', '⭐', 5);
+            break;
+          case 11: // 11月：秋（紅葉）
+            createElement('maple-leaf', '🍁', 25);
+            createElement('maple-leaf', '🍂', 15);
+            break;
+          case 12: // 12月：クリスマス
+            createElement('snowflake', '❄️', 30);
+            createElement('star', '⭐', 20);
+            createElement('star', '✨', 15);
+            createElement('ornament', '🎄', 3);
+            createElement('ornament', '🎁', 5);
+            break;
+        }
+      }
+      
+      // ページ読み込み時にアニメーションを初期化
+      initBackgroundAnimation();
+      
       // 参加者リスト
       const participants = [
         'sizuhiko',
@@ -120,8 +660,12 @@
         '会社の食堂に入って欲しい飲食店ありますか？',
         'もしお店を始めるなら、何のお店を始めたい？',
         'コンビニで好きなホットスナックありますか？',
-        '昨日何時に寝ましたか？理想は何時に寝たい？(_ _)zzZ'
+        '昨日何時に寝ましたか？理想は何時に寝たい？(_ _)zzZ',
+        '瞬間移動、予知能力、テレパシー（人の心を読む能力）、１つだけ手に入るならどれが欲しい？'
       ];
+
+      // まだ表示していないお題のリスト
+      let availableTopics = [...topics];
 
       function shuffle(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
@@ -132,8 +676,18 @@
       }
 
       function run() {
-        // お題をランダムに選択
-        const topic = topics[Math.floor(Math.random() * topics.length)];
+        // まだ表示していないお題がなくなったら、リストをリセット
+        if (availableTopics.length === 0) {
+          availableTopics = [...topics];
+        }
+
+        // まだ表示していないお題からランダムに選択
+        const randomIndex = Math.floor(Math.random() * availableTopics.length);
+        const topic = availableTopics[randomIndex];
+        
+        // 選択したお題をリストから削除
+        availableTopics.splice(randomIndex, 1);
+        
         document.getElementById('topic').textContent = `🎤 お題：「${topic}」`;
 
         // 参加者の順番をシャッフル
