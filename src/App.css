@@ -1,0 +1,430 @@
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f1eceb; /* ベースカラー */
+        color: #363427; /* テキストカラー */
+        margin: 0;
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: background-color 0.5s ease;
+        position: relative;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      /* 背景アニメーション用のコンテナ */
+      .background-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      /* 1月：お正月（雪、初日の出） */
+      .january .background-animation {
+        background: linear-gradient(to bottom, #ff6b6b 0%, #ffd93d 50%, #87ceeb 100%);
+      }
+      .january .snowflake {
+        position: absolute;
+        color: white;
+        font-size: 1em;
+        animation: fall linear infinite;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+
+      /* 2月：バレンタイン（ハート、ピンク） */
+      .february .background-animation {
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+      }
+      .february .heart {
+        position: absolute;
+        color: #ff1744;
+        font-size: 1.5em;
+        animation: float 3s ease-in-out infinite;
+        opacity: 0.7;
+      }
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(10deg);
+        }
+      }
+
+      /* 3月：春（桜の花びら） */
+      .march .background-animation {
+        background: linear-gradient(to bottom, #e8f5e9 0%, #fff9c4 100%);
+      }
+      .march .cherry-blossom {
+        position: absolute;
+        color: #ffb3d9;
+        font-size: 1.2em;
+        animation: petal-fall 4s linear infinite;
+      }
+      @keyframes petal-fall {
+        to {
+          transform: translateY(100vh) rotate(720deg);
+        }
+      }
+
+      /* 4月：春（桜、新緑） */
+      .april .background-animation {
+        background: linear-gradient(to bottom, #e8f5e9 0%, #c8e6c9 100%);
+      }
+      .april .cherry-blossom {
+        position: absolute;
+        color: #ffb3d9;
+        font-size: 1.2em;
+        animation: petal-fall 4s linear infinite;
+      }
+
+      /* 5月：新緑（葉っぱ） */
+      .may .background-animation {
+        background: linear-gradient(to bottom, #a5d6a7 0%, #c8e6c9 100%);
+      }
+      .may .leaf {
+        position: absolute;
+        color: #4caf50;
+        font-size: 1.3em;
+        animation: leaf-fall 5s linear infinite;
+      }
+      @keyframes leaf-fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+
+      /* 6月：梅雨（雨、紫陽花） */
+      .june .background-animation {
+        background: linear-gradient(to bottom, #b39ddb 0%, #90caf9 100%);
+      }
+      .june .raindrop {
+        position: absolute;
+        width: 2px;
+        height: 30px;
+        background: linear-gradient(to bottom, rgba(100, 181, 246, 0.3), #64b5f6);
+        border-radius: 1px;
+        animation: rain-fall linear infinite;
+        opacity: 0.8;
+      }
+      @keyframes rain-fall {
+        0% {
+          transform: translateY(-30px);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(calc(100vh + 30px));
+          opacity: 0;
+        }
+      }
+      .june .hydrangea {
+        position: absolute;
+        color: #ba68c8;
+        font-size: 1.5em;
+        animation: float 4s ease-in-out infinite;
+        opacity: 0.7;
+      }
+
+      /* 7月：夏（花火、星） */
+      .july .background-animation {
+        background: linear-gradient(to bottom, #1a237e 0%, #283593 50%, #3949ab 100%);
+      }
+      .july .star {
+        position: absolute;
+        color: #ffd700;
+        font-size: 1em;
+        animation: twinkle 2s ease-in-out infinite;
+      }
+      @keyframes twinkle {
+        0%, 100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+
+      /* 8月：夏（海、波） */
+      .august .background-animation {
+        background: linear-gradient(to bottom, #4fc3f7 0%, #29b6f6 30%, #0288d1 70%, #0277bd 100%);
+      }
+      .august .cloud {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 2em;
+        animation: cloud-drift 20s linear infinite;
+      }
+      @keyframes cloud-drift {
+        0% {
+          transform: translateX(-100px);
+        }
+        100% {
+          transform: translateX(calc(100vw + 100px));
+        }
+      }
+      .august .wave {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1.5em;
+        animation: wave-float 4s ease-in-out infinite;
+      }
+      @keyframes wave-float {
+        0%, 100% {
+          transform: translateY(0) translateX(0);
+        }
+        50% {
+          transform: translateY(-10px) translateX(10px);
+        }
+      }
+      .august .float-item {
+        position: absolute;
+        font-size: 1.8em;
+        animation: float-on-water 6s ease-in-out infinite;
+        opacity: 0.8;
+      }
+      @keyframes float-on-water {
+        0%, 100% {
+          transform: translateY(0) translateX(0) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-15px) translateX(10px) rotate(5deg);
+        }
+        50% {
+          transform: translateY(-10px) translateX(-5px) rotate(-5deg);
+        }
+        75% {
+          transform: translateY(-20px) translateX(5px) rotate(3deg);
+        }
+      }
+      .august .beach-item {
+        position: absolute;
+        font-size: 1.5em;
+        animation: beach-float 5s ease-in-out infinite;
+        opacity: 0.7;
+      }
+      @keyframes beach-float {
+        0%, 100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-8px) scale(1.1);
+        }
+      }
+
+      /* 9月：秋（紅葉、月） */
+      .september .background-animation {
+        background: linear-gradient(to bottom, #fff3e0 0%, #ffe0b2 100%);
+      }
+      .september .maple-leaf {
+        position: absolute;
+        color: #ff6f00;
+        font-size: 1.5em;
+        animation: maple-fall 6s linear infinite;
+      }
+      @keyframes maple-fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+
+      /* 10月：ハロウィン */
+      .october .background-animation {
+        background: linear-gradient(to bottom, #6a1b9a 0%, #ab47bc 50%, #ce93d8 100%);
+      }
+      .october .pumpkin {
+        position: absolute;
+        color: #ff6f00;
+        font-size: 1.5em;
+        animation: float 3s ease-in-out infinite;
+      }
+      .october .ghost {
+        position: absolute;
+        color: white;
+        font-size: 1.3em;
+        animation: float 4s ease-in-out infinite;
+        opacity: 0.8;
+      }
+
+      /* 11月：秋（紅葉、落ち葉） */
+      .november .background-animation {
+        background: linear-gradient(to bottom, #efebe9 0%, #d7ccc8 100%);
+      }
+      .november .maple-leaf {
+        position: absolute;
+        color: #d84315;
+        font-size: 1.5em;
+        animation: maple-fall 6s linear infinite;
+      }
+
+      /* 12月：クリスマス（雪、星、装飾） */
+      .december .background-animation {
+        background: linear-gradient(to bottom, #1a237e 0%, #283593 50%, #3949ab 100%);
+      }
+      .december .snowflake {
+        position: absolute;
+        color: white;
+        font-size: 1.2em;
+        animation: fall 3s linear infinite;
+      }
+      .december .star {
+        position: absolute;
+        color: #ffd700;
+        font-size: 1.5em;
+        animation: twinkle 1.5s ease-in-out infinite;
+      }
+      .december .ornament {
+        position: absolute;
+        font-size: 1em;
+        animation: swing 3s ease-in-out infinite;
+      }
+      @keyframes swing {
+        0%, 100% {
+          transform: rotate(-5deg);
+        }
+        50% {
+          transform: rotate(5deg);
+        }
+      }
+
+      h1 {
+        font-size: 1.8em;
+        margin-bottom: 0.5em;
+        color: #363427; /* デフォルトのテキストカラー */
+        transition: color 0.5s ease;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 月ごとのh1の色設定 */
+      /* 1月：お正月（明るい背景） */
+      .january h1 {
+        color: #1a1a1a;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 2月：バレンタイン（明るいピンク背景） */
+      .february h1 {
+        color: #8b0000;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+      }
+
+      /* 3月：春（明るい背景） */
+      .march h1 {
+        color: #2e7d32;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 4月：春（明るい背景） */
+      .april h1 {
+        color: #1b5e20;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 5月：新緑（明るい背景） */
+      .may h1 {
+        color: #1b5e20;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 6月：梅雨（明るい紫・青背景） */
+      .june h1 {
+        color: #1a237e;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 7月：夏（暗い背景） */
+      .july h1 {
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 215, 0, 0.3);
+      }
+
+      /* 8月：夏（海の背景） */
+      .august h1 {
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 9月：秋（明るい背景） */
+      .september h1 {
+        color: #bf360c;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 10月：ハロウィン（暗い紫背景） */
+      .october h1 {
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 111, 0, 0.5);
+      }
+
+      /* 11月：秋（明るい背景） */
+      .november h1 {
+        color: #bf360c;
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+      }
+
+      /* 12月：クリスマス（暗い背景） */
+      .december h1 {
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 215, 0, 0.4);
+      }
+
+      button {
+        background-color: #627962; /* アクセントカラー */
+        color: white;
+        border: none;
+        padding: 0.8em 1.5em;
+        font-size: 1em;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      button:hover {
+        background-color: #4c5e46; /* アクセントカラーの少し暗い色 */
+      }
+
+      #topic {
+        background: white;
+        padding: 1em 1.2em;
+        margin: 2em 0 1em;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        font-size: 1.2em;
+        font-weight: 600;
+        max-width: 600px;
+        width: 100%;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        max-width: 400px;
+        width: 100%;
+      }
+
+      li {
+        background: white;
+        margin: 0.5em 0;
+        padding: 0.8em 1em;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        font-size: 1em;
+        text-align: left;
+      }
+    
+#root {
+  display: contents;
+}
