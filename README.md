@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# 🎲 アイスブレイクお題メーカー (Ice Break Topic Maker)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ミーティングやイベントのアイスブレイクで使える、お題のランダム抽選＆参加者の順番シャッフルアプリです。
+月ごとに背景のアニメーション（降ってくる絵文字やテーマカラー）が変わる機能も搭載しています。
 
-Currently, two official plugins are available:
+## データの変更方法
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+本アプリの各種データ（参加者、お題、背景アニメーション）は、ソースコード内の設定ファイルを編集することでカスタマイズできます。
 
-## React Compiler
+### 1. 参加者・お題の変更
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**ファイル:** `src/data/topics.ts`
 
-## Expanding the ESLint configuration
+このファイル内の配列を編集することで、表示される参加者の一覧とお題を変更できます。
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```typescript
+// 参加者リストの編集
+export const initialParticipants: string[] = [
+  'sizuhiko',
+  'しょうちゃん',
+  // ... ここを変更・追加・削除
+];
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+// お題リストの編集
+export const initialTopics: string[] = [
+  '目玉焼きには何をかける？（醤油？ソース？塩コショウ・・・）',
+  '今日のランチは何を食べる予定ですか？',
+  // ... ここを変更・追加・削除
+];
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. 背景アニメーション（絵文字や演出）の変更
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**ファイル:** `src/config/backgroundConfigs.ts`
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+月ごとのテーマ（背景色用のCSSクラス）や、画面を飛び交う絵文字の種類・数は、`MONTHLY_CONFIGS` オブジェクトで管理されています。
+
+```typescript
+// 例：1月の設定に新しい絵文字を追加する場合の設定例
+1: {
+  theme: 'january', // CSSクラス名 (スタイルは src/App.css に定義)
+  elements: [
+    // BackgroundElementGroup(クラス名, 絵文字, 個数, [詳細オプション])
+    new BackgroundElementGroup('snowflake', '❄️', 20),
+    new BackgroundElementGroup('snowflake', '⛄', 5) // ← 新しく雪だるまを追加する例
+  ]
+},
 ```
+- **第2引数（絵文字）:** 単一の文字列のほか、配列で複数指定することも可能です（例: `['🌸', '🌿']`）。配列にした場合はその中からランダムで描画されます。
+- **第3引数（個数）:** 画面上に表示する要素の数を調整できます。
+- **第4引数（オプション・省略可）:** アニメーションの秒数や開始位置（上から、下から）などを細かく指定できます。
+
+## ローカルでの開発・動作確認
+
+```bash
+# パッケージのインストール
+npm install
+
+# ローカルサーバーの起動 (通常は http://localhost:5173 にアクセス)
+npm run dev
+```
+
+## 自動デプロイについて
+
+このリポジトリは GitHub Actions が設定されており、`main` ブランチに変更コードを Push（または Pull Request を Merge）するだけで、自動的にビルドが走り GitHub Pages 上の本番環境に最新の状態が反映されます。（`.github/workflows/deploy.yml` にて定義されています）
