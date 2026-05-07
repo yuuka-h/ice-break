@@ -1,19 +1,34 @@
 /**
+ * チームごとの参加者リスト
+ */
+export const teamParticipants: Record<string, string[]> = {
+  '法人チーム': [
+    'sizuhiko',
+    'なべ',
+    'さがけん',
+    'しょうちゃん',
+    'のせなみ',
+    'かまたこ',
+    'さとっさん',
+    'ひらこん',
+    'がんちゃん'
+  ],
+  'BanQチーム': [
+    'さがけん',
+    'しみまこ',
+    'KJ',
+    'とび',
+    'まさぴ'
+  ]
+};
+
+/**
  * 初期設定の参加者のリスト
- * @type {string[]}
+ * @deprecated チームごとの管理に移行しました。teamParticipantsを使用してください。
  */
 export const initialParticipants: string[] = [
-  'sizuhiko',
-  'しょうちゃん',
-  'のせなみ',
-  'さがけん',
-  'ひらこん',
-  'がんちゃん',
-  'なべ',
-  'けーじぇー',
-  'さとっさん',
-  'かまたこ',
-  'しみまこ'
+  ...teamParticipants['法人チーム'],
+  ...teamParticipants['BanQチーム']
 ];
 
 /**
