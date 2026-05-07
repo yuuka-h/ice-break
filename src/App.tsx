@@ -18,7 +18,7 @@ function App(): React.JSX.Element {
   useBackgroundAnimation('backgroundAnimation')
 
   // アイスブレイクの抽選・状態管理を外部化
-  const { currentTopic, participants, run } = useIceBreak()
+  const { currentTopic, participants, selectedTeam, run } = useIceBreak()
 
   return (
     <>
@@ -27,8 +27,33 @@ function App(): React.JSX.Element {
       
       <h1>🎲 アイスブレイク：お題 & 順番</h1>
       
-      {/* お題と順番を更新するボタン */}
-      <button onClick={run}>スタート！</button>
+      <div className="controls">
+        {/* チーム選択 */}
+        <div className="team-selector">
+          <p className="label">チームを選択：</p>
+          <div className="button-group">
+            <button 
+              className={selectedTeam === '法人チーム' ? 'active' : ''} 
+              onClick={() => run('法人チーム')}
+            >
+              法人チーム
+            </button>
+            <button 
+              className={selectedTeam === 'BanQチーム' ? 'active' : ''} 
+              onClick={() => run('BanQチーム')}
+            >
+              BanQチーム
+            </button>
+          </div>
+        </div>
+
+        {/* シャッフルボタン（チームが選ばれている場合のみ強調） */}
+        {selectedTeam && (
+          <button className="shuffle-button" onClick={() => run(selectedTeam)}>
+            次のお題 ＆ 順番をシャッフル！
+          </button>
+        )}
+      </div>
       
       {/* 選ばれたお題の表示エリア */}
       <p id="topic">🎤 お題：「{currentTopic}」</p>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { initialTopics, initialParticipants } from '../data/topics'
+import { initialTopics, teamParticipants } from '../data/topics'
 
 /**
  * 配列の要素をランダムに並び替える（シャッフルする）
@@ -20,7 +20,8 @@ const shuffle = (arr: string[]): string[] => {
  * @returns {{
  *   currentTopic: string,
  *   participants: string[],
- *   run: () => void
+ *   selectedTeam: string | null,
+ *   run: (team: string) => void
  * }} 状態と実行アクションを含むオブジェクト
  */
 export const useIceBreak = () => {
@@ -32,7 +33,7 @@ export const useIceBreak = () => {
   /**
    * @type {[string, React.Dispatch<React.SetStateAction<string>>]} 現在画面に表示しているお題とその更新関数
    */
-  const [currentTopic, setCurrentTopic] = useState<string>('お題がここに表示されます')
+  const [currentTopic, setCurrentTopic] = useState<string>('チームを選んでスタート！')
 
   /**
    * @type {[string[], React.Dispatch<React.SetStateAction<string[]>>]} シャッフルされた参加者のリストとその更新関数
@@ -40,10 +41,16 @@ export const useIceBreak = () => {
   const [participants, setParticipants] = useState<string[]>([])
 
   /**
-   * お題の抽選と、参加者の順番シャッフルを実行する
+   * @type {[string | null, React.Dispatch<React.SetStateAction<string | null>>]} 現在選択されているチーム
+   */
+  const [selectedTeam, setSelectedTeam] = useState<string | null>(null)
+
+  /**
+   * お題の抽選と、指定されたチームの参加者の順番シャッフルを実行する
+   * @param {string} team - 選択されたチーム名 ('A' または 'B')
    * @returns {void}
    */
-  const run = (): void => {
+  const run = (team: string): void => {
     let topicsPool = [...availableTopics]
     
     // まだ表示していないお題がなくなったら、リストをリセット
@@ -60,14 +67,17 @@ export const useIceBreak = () => {
     setAvailableTopics(topicsPool)
     setCurrentTopic(topic)
 
-    // 参加者をシャッフルして更新
-    const shuffled = shuffle([...initialParticipants])
+    // 選択されたチームの参加者をシャッフルして更新
+    const teamMembers = teamParticipants[team] || []
+    const shuffled = shuffle([...teamMembers])
     setParticipants(shuffled)
+    setSelectedTeam(team)
   }
 
   return {
     currentTopic,
     participants,
+    selectedTeam,
     run
   }
 }

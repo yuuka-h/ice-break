@@ -388,12 +388,74 @@
         font-size: 1em;
         border-radius: 8px;
         cursor: pointer;
-        transition: background-color 0.2s ease;
+        transition: background-color 0.2s ease, transform 0.1s ease;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
 
       button:hover {
         background-color: #4c5e46; /* アクセントカラーの少し暗い色 */
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      .controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5em;
+        margin-bottom: 2em;
+        background: rgba(255, 255, 255, 0.4);
+        padding: 1.5em;
+        border-radius: 15px;
+        backdrop-filter: blur(5px);
+      }
+
+      .team-selector {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5em;
+      }
+
+      .team-selector .label {
+        margin: 0;
+        font-weight: 600;
+        font-size: 0.9em;
+        color: #555;
+      }
+
+      .button-group {
+        display: flex;
+        gap: 1em;
+      }
+
+      .button-group button {
+        background-color: #a5b5a5;
+        opacity: 0.8;
+      }
+
+      .button-group button.active {
+        background-color: #363427;
+        opacity: 1;
+        box-shadow: 0 0 0 3px rgba(54, 52, 39, 0.3);
+      }
+
+      .shuffle-button {
+        background-color: #627962;
+        font-size: 1.2em;
+        padding: 1em 2em;
+        width: 100%;
+        max-width: 400px;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+        100% { transform: scale(1); }
       }
 
       #topic {
