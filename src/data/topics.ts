@@ -2,6 +2,19 @@
  * チームごとの参加者リスト
  */
 export const teamParticipants: Record<string, string[]> = {
+  '合同': [
+    'sizuhiko',
+    'なべ',
+    'さがけん',
+    'しょうちゃん',
+    'のせなみ',
+    'かまたこ',
+    'さとっさん',
+    'ひらこん',
+    'がんちゃん',
+    'しみまこ',
+    'KJ',
+  ],
   '法人チーム': [
     'sizuhiko',
     'なべ',
@@ -27,6 +40,7 @@ export const teamParticipants: Record<string, string[]> = {
  * @deprecated チームごとの管理に移行しました。teamParticipantsを使用してください。
  */
 export const initialParticipants: string[] = [
+  ...teamParticipants['合同'],
   ...teamParticipants['法人チーム'],
   ...teamParticipants['BanQチーム']
 ];
