@@ -11,7 +11,11 @@ export const teamParticipants: Record<string, string[]> = {
     'かまたこ',
     'さとっさん',
     'ひらこん',
-    'がんちゃん'
+    'がんちゃん',
+    'ごう',
+    'まきまき',
+    'もみじ',
+    'しょう（商）'
   ],
   'BanQチーム': [
     'さがけん',
